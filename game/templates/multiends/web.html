@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+		<title>{{data1}}</title>
+		<link rel="stylesheet" href="http://tjxx.lnu.edu.cn/css/weui.min.css">
+
+	</head>
+	<body>
+
+		<div id="bodyDiv">
+			<p style="text-align: center; background: {{data}};" ><br><img
+					src="{{data3}}" alt="" width=300><br><dis style=" font-size: 95px;"id="timeShow1"></dis></p>
+			<div class="weui-cells__title">{{data2}}</div>
+			<div class="weui-cells">
+				<div class="weui-cell  weui-cell_example">
+					<div class="weui-cell__hd"><img src="http://tjxx.lnu.edu.cn/images/person.png" alt=""
+							style="width: 20px; margin-right: 16px; display: block;"></div>
+					<div class="weui-cell__bd">
+						<p>学号：191003403</p>
+					</div>
+				</div>
+				<div class="weui-cell  weui-cell_example">
+					<div class="weui-cell__hd"><img src="http://tjxx.lnu.edu.cn/images/person.png" alt=""
+							style="width: 20px; margin-right: 16px; display: block;"></div>
+					<div class="weui-cell__bd">
+						<p>姓名：李子明</p>
+					</div>
+				</div>
+				<div class="weui-cell  weui-cell_example">
+					<div class="weui-cell__hd"><img src="http://tjxx.lnu.edu.cn/images/person.png" alt=""
+							style="width: 20px; margin-right: 16px; display: block;"></div>
+					<div class="weui-cell__bd">
+						<p>学院：物理学院</p>
+					</div>
+				</div>
+				<div class="weui-cell  weui-cell_example">
+					<div class="weui-cell__hd"><img src="http://tjxx.lnu.edu.cn/images/time.png" alt=""
+							style="width: 20px; margin-right: 16px; display: block;"></div>
+					<div class="weui-cell__bd" id="timeShow">
+
+					</div>
+				</div>
+
+			</div>
+			<br>
+			<br>
+			<div class="weui-footer">
+				<p>版权所有 © 辽宁大学</p>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			var t = null;
+			var i = 0;
+			var rand = 0;
+			setInterval('changeColor()', 300);
+
+			function changeColor() {
+				var div = document.getElementById('imgBg'); //获得div元素
+				var colorArr = ["#9E6A51", "#4594CF", "#FBAF5E", "#01A89B", "#83861D", "#01A89B", "#A185BE", "#01A89B"]; //建立颜色库
+				rand = Math.floor(Math.random() * 7)
+				if (i == rand) {
+					i = rand + 1
+				} else {
+					i = rand
+				}
+				div.style.background = colorArr[i]
+			}
+
+			function time() {
+				dt = new Date();
+
+				var y = dt.getFullYear();
+				var h = dt.getHours();
+				var mn = dt.getMonth() + 1;
+				var day = dt.getDate();
+				var m = dt.getMinutes();
+				var s = dt.getSeconds();
+				if (s < 10)
+					s = "0" + s;
+				if (h < 10)
+					h = "0" + h;
+				if (m < 10)
+					m = "0" + m;
+				document.getElementById("timeShow").innerHTML = "时间：" + y + "/" + mn + "/" + day ;
+				document.getElementById("timeShow1").innerHTML =  h + ":" + m + ":" + s;
+			}
+			window.onload = function() {
+				time()
+			}
+		</script>
+	</body>
+</html>
