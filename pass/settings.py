@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["101.200.136.154"]
 # Application definition
 
 INSTALLED_APPS = [
+    'django_crontab',
     'game.apps.GameConfig', 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,6 +49,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CRONJOBS=[
+    ('0 * * * *', 'task.task','>>task.log')
 ]
 
 ROOT_URLCONF = 'pass.urls'

@@ -1,5 +1,7 @@
-
+from game.models.color.color import Color
 from django.shortcuts import render
+
+from game.views.save_data import Save_data
 
 def index(request):
 
@@ -7,7 +9,7 @@ def index(request):
 
     return render(request,"multiends/login.html")
 def ground(request):
-
+    Save_data(request)
     if  request.method == 'POST':
         color = request.POST.get('color')
         st= request.POST.get('st')

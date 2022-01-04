@@ -1,27 +1,111 @@
-
-
 <!DOCTYPE html>
+<!-- saved from url=(0028)http://101.200.136.154:8090/ -->
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>登录</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+    <title>输入</title>
+    <link rel="stylesheet" href="http://tjxx.lnu.edu.cn/css/weui.min.css">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 </head>
+
+
+
+
 <body>
-<h1>
-<p style="text-align:center" font size="2">输入一些东西</p>
 
 
-</h1>
-<h1>
-<p style="text-align:center">输入啊：</p>
-</h1>
-<form action="/ground/" method="post">
-{% csrf_token %}
-<p style="text-align:center">颜色：<input type="text" name="color" /><br /></p>
-<p style="text-align:center">出校or入校：<input type="text" name="st" /><br /></p>
-<br/>
-<input style="text-align:center" type="submit" value="提交" /></input>
-</form>
+
+    <form action="/ground/" method="post">
+        {% csrf_token %}
+
+        <div class="weui-cells__title">输入一些东西</div>
+        <div class="weui-cells">
+            <div class="weui-cell  weui-cell_example">
+                <div class="weui-cell__hd">颜色：</div>
+                <div class="weui-cell__bd">
+                    <input type="text" class="weui-input" name="color" placeholder="请输入颜色" />
+                </div>
+            </div>
+
+            <div class="weui-cell  weui-cell_example">
+                <div class="weui-cell__hd">出校or入校：</div>
+                <div class="weui-cell__bd">
+                    <input type="text" class="weui-input" name="st" placeholder="输入出校或者入校" />
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <input class="weui-btn weui-btn_primary" type="submit" value="提交"></input>
+
+
+        <div class="weui-cells__title">历史颜色及使用次数</div>
+        <div id="addcolor">
+
+        </div>
+
+    </form>
+    <script type="text/javascript">
+        let colors = [];
+
+        $.ajax({
+            url: "/getinfo/",
+            type: "GET",
+            async: false,
+            success: function (resp) {
+
+                for (p in resp) {
+
+                    colors.push(resp[p]);
+                }
+
+            }
+
+
+        })
+
+
+
+
+        let htmlvar = "";
+        console.log(colors);
+        let t = colors.length;
+
+        for (let i = 0; i < colors.length; i++) {
+
+            htmlvar += '<div class="weui-cell  weui-cell_example">';
+
+            htmlvar += '<div class="weui-cell__hd">' +
+                colors[i].color_name + '  ' +
+                colors[i].color_times +
+                "</div>";
+
+
+
+            htmlvar += "</div>";
+
+
+        }
+        document.getElementById("addcolor").innerHTML = htmlvar;
+    </script>
+
+
+
+
+    <br>
+    <br>
+
+
+
+
+
 
 </body>
+
 </html>
